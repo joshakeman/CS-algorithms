@@ -53,6 +53,136 @@ Arrow methods are relatively newer javascript thingy (ES6 vs ES5)
 3. React.memo
     This can be used to create a purely presentationaly component using a technique called memoization
 
+## Explain Error Boundaries?
+
+    In React if you want to catch errors in your components there are multiple ways to do it. This is one of those ways.
+    In javascript you can do a try-catch block... this is similar.
+    Looks like:
+
+    <ErrorBoundaryComp>
+        <MyComp />
+    </ErrorBoundaryComp>
+
+    These components have two special lifecyle hooks:
+    1. static getDerivedStateFromError
+        Here you can have a fallback componenet-- because of the error your component won't render, and this could be rendered instead (probably some kind of error message)
+    2. componentDidCatch
+        In this method you can log the error
+
+## Best lifecylce method for making API calls?
+
+    API calls typically update the state and re-render the component. You will want to be sure your DOM is already ready to go. So, the best method is **componentDidMount**
+
+## React Patterns
+
+    1. Context-API pattern
+        Passing props into a deeply nested component is messy. The context API allows you to access need props using a Provider-Consumer wrapper so you don't have to do this prop drilling
+    2. Render props
+        Just uses children as functions... instead of passing a component as component you pass it as function
+    3. Presentation component
+        Stateless function components... as opposed to stateful components with functionality typically called **Container Components**
+
+## Why would you use React in your project?
+
+    Why not Angular, Vue, Ember? The decision is case-by-case...
+    Where are you in the product lifecycle? Which framework is changing a lot or about to change in the middle of your product cycle?
+    Angular and Ember are easy to configure but hard to use... 
+    Angular has everything built-in, whereas with React you have to piece everything together custom.
+    Also React is functional programming, you use a lot of javascript. If your engineers are sharp with javascript this is the framework for you.
+
+## What is css-in-js pattern?
+    CSS is global... so changing one part can easily change another unintentionally...
+    Since react is all JS you can pass JS object as css, which does inline css which does not pollute other parts...
+    Another advantage of inline css is you can conditianally render styles based on props and also common styles are easily shared because they're JS objects which can be imported in any file.
+
+## Why can't you update state directly without setState()?
+
+    setState will always trigger re-rendering, which is good because you want to re-render on state changes typically.
+    setState creates a copy of the state and then adds to it/changes it, rather than directly changing the state.
+
+## How many ways can you conditionally render in React?
+    1. An **if statement**
+        if (isLiar) {
+            return <PantsOnFire/>
+        }
+        return <YouAreNice/>
+    2. An **&& expression**
+        {isLiar  &&
+            <PantsOnFire/>
+        }
+
+        Will render <PantsOnFire/> if isLiar is true
+    3. A **ternary expression**
+        {isLiar ? (
+            <PantsOnFire/>
+        ) : (
+            <YouAreNice/>
+        )}
+
+## What are Fragments and why do we use them?
+    Whenever you render a component you only render a single child. Can't do this...
+
+    render() {
+        return(
+            <ChildA />
+            <ChildB />
+            <ChildC />
+        )
+    }
+
+    You can use:
+
+    render() {
+        return(
+        <React.Fragment>
+            <ChildA />
+            <ChildB />
+            <ChildC />
+        <React.Fragment>
+        )
+    }
+
+## How to do code-splitting in React?
+
+    When the React code compiles, the bundler bundles your entire application into one file which is typically large.
+    That can be problematic if you have a big project. This could make your initial load slow. 
+    React introduced code-splitting to let you split the bundle into multiple bundles... 
+    React introduced **Dynamic Import** or **Lazy Loading** or **code-splitting**...
+
+    const LazyComponent = React.lazy(() => import(`./lazyComponent'))
+
+    Now your main app is loaded and this is loading **asynchronously**
+
+    You can provide a fallback component this way:
+
+    <Suspense fallback={<div>Loading...</div>}>
+        <LazyComponent />
+    </Suspense>
+
+## What are some alternatives to Redux?
+
+    1. mobX - popular alternative to Redux
+    2. apollo client + graphQL - Apollo is typically used by people using graphQL
+    3. RxJS
+
+## What is redux middleware?
+
+    The concept of middleware is to add a layer to do some action on your data or something before continuing on.
+    In redux you:
+        - **Dispatch Actions** from your UI
+        - Which go through a **reducer** to apply some change to them
+        - which is stored as global state in the redux **store**
+
+    You may be updating the store simultaneously as you're **making the same change on your database with a post request to your server**
+    If something goes wrong with your Post (an asyconchronous activity unlike updating the store) and the two get out of synch, that's bad.
+    So you could have middleware to intercept the action and make it wait for a successful response from the server. Only when you know that POST worked, do you dispatch the action to the reducer to update your store.
+
+
+
+
+
+
+
 
 
 
