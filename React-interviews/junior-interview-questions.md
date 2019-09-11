@@ -151,15 +151,19 @@ That can be problematic if you have a big project. This could make your initial 
 React introduced code-splitting to let you split the bundle into multiple bundles... 
 React introduced **Dynamic Import** or **Lazy Loading** or **code-splitting**...
 
+```javascript
 const LazyComponent = React.lazy(() => import(`./lazyComponent'))
+```
 
 Now your main app is loaded and this is loading **asynchronously**
 
 You can provide a fallback component this way:
 
+```javascript
 <Suspense fallback={<div>Loading...</div>}>
     <LazyComponent />
 </Suspense>
+```
 
 ## What are some alternatives to Redux?
 
