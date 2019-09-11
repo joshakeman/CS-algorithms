@@ -238,6 +238,14 @@ There are two solutions-- make the DOM updates faster, and update less often. **
 
 React has its own DOM tree created during the initial render, called the Virtual DOM... 
 
+## List the three lifcycle methods now being deprecated as **unsafe**
+
+1. componentWillMount
+2. componentWillReceiveProps
+3. componentWillUpdate
+
+These are being deprecated as part of the ongoing reimplementation of React's core algorithm. This reimplementation project is called **React Fiber**
+
 ## Projects
 
 Common approaches:
@@ -260,13 +268,6 @@ _Do's and Don'ts_:
 - Don't make it fancy with CSS
 - If you have time write test cases in jest
 
-## List the three lifcycle methods now being deprecated as **unsafe**
-
-1. componentWillMount
-2. componentWillReceiveProps
-3. componentWillUpdate
-
-These are being deprecated as part of the ongoing reimplementation of React's core algorithm. This reimplementation project is called **React Fiber**
 
 
 
