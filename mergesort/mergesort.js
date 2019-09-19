@@ -1,32 +1,30 @@
-function mergeSort(arr){
-    var len = arr.length;
-    if(len <2)
-       return arr;
-    var mid = Math.floor(len/2),
-        left = arr.slice(0,mid),
-        right =arr.slice(mid);
-    //send left and right to the mergeSort to broke it down into pieces
-    //then merge those
-    return merge(mergeSort(left),mergeSort(right));
- }
- 
- function merge(left, right){
-   var result = [],
-       lLen = left.length,
-       rLen = right.length,
-       l = 0,
-       r = 0;
-   while(l < lLen && r < rLen){
-      if(left[l] < right[r]){
-        result.push(left[l++]);
-      }
-      else{
-        result.push(right[r++]);
-     }
-   }  
-   //remaining part needs to be addred to the result
-   return result.concat(left.slice(l)).concat(right.slice(r));
- }
+function sort(n) {
+  const length = n.length;
+  // base case
+  if(length === 1) {
+      return n;
+  }
+  if(length === 2) {
+      return n[0] > n[1] ? [n[1], n[0]] : [n[0], n[1]];
+  }
+  // slit and merge
+  const mid = length/2;
+  return merge(sort(n.slice(0, mid)), sort(n.slice(mid)));
+  }
 
-let arr = [4, 9, 1, 13, 6]
-console.log(mergeSort(arr))
+  function merge(a = [], b = []) {
+  const merged = [];
+  // merge elements on a and b in asc order. Run-time O(a + b)
+  for (let ai = 0, bi = 0; ai < a.length || bi < b.length;) {
+      if(ai >= a.length || a[ai] > b[bi]) {
+      merged.push(b[bi++]);
+      } else {
+      merged.push(a[ai++]);
+      }
+  }
+
+  return merged;
+}
+
+// TIME COMPLEXITY: O(nLogn) aka Linearithmic avg, O(n log(n)) worst
+// SPACE COMPLEXITY: O(n) aka Linear
