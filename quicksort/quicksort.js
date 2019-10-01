@@ -42,3 +42,6 @@ function quickSort(items, left, right) {
 
 let sortedArray = quickSort(items, 0, items.length - 1)
 console.log(sortedArray)
+
+// TIME COMPLEXITY: n(long(n)) avg, O(n^2) worst
+// SPACE COMPLEXITY: O(log(n))

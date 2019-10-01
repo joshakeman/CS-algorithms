@@ -9,6 +9,14 @@
 7. INcrement the left pointer and decrement the right pinter.
 8. If index of left pointer is still less than the index of the right pointer, repeat the process; else return the index of the left pointer.
 
+**Note** quicksort has the advantage that unlike mergesort you can sort a list in place, so you don't need to make a copy of the array, so you save on memory
+
+Key word to remember: you **partition** list by picking a **pivot** item. **Partition** with **pivot**
+Quick sort partition with pivot
+
+
+
+
 ### Time Complexity:
 Best: O(nLogn), 
 Average: O(nLogn), 
